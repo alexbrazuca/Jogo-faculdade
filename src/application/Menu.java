@@ -18,8 +18,6 @@ public class Menu {
 	
 	private CurrentPlayer currentPlayer;
 	
-	private Instrucao instrucao;
-	
 	private List<String>lista =  new ArrayList<>();
 	
 	public void menu() {
@@ -76,13 +74,14 @@ public class Menu {
 						int answer = sc.nextInt();
 						nextTurn();
 						
-					
 					}
 					
 				break;
 			
 			case 2:	
-				instrucao.instrucao();
+				Instrucao instrucao = new Instrucao(); 
+				System.out.println("INSTRUCAO:");
+				instrucao.Instrucao();
 				
 				break;
 			
@@ -106,9 +105,15 @@ public class Menu {
 
 	private void nextTurn() {
 		turn++;
-		currentPlayer = (currentPlayer == CurrentPlayer.PLAYER_ONE)? CurrentPlayer.PLAYER_TWO:CurrentPlayer.PLAYER_ONE;
-		currentPlayer = (currentPlayer == CurrentPlayer.PLAYER_TWO)? CurrentPlayer.PLAYER_THREE:CurrentPlayer.PLAYER_TWO;
-		currentPlayer = (currentPlayer == CurrentPlayer.PLAYER_THREE)? CurrentPlayer.PLAYER_ONE:CurrentPlayer.PLAYER_THREE;
+		if(currentPlayer == CurrentPlayer.PLAYER_ONE) {
+			currentPlayer = CurrentPlayer.PLAYER_TWO;
+		}
+		else if(currentPlayer == CurrentPlayer.PLAYER_TWO){
+			currentPlayer = CurrentPlayer.PLAYER_THREE;
+		}
+		else {
+			currentPlayer = CurrentPlayer.PLAYER_ONE;
+		}
 		
 	}
 	
