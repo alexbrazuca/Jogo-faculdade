@@ -12,6 +12,10 @@ public class Menu {
 	
 	Scanner sc = new Scanner(System.in);
 	
+	int[] rightAnswer = new int[] {4,3,1,1,4,4,1,2,1};
+	int[] answer = new int[rightAnswer.length];
+	
+	
 	private int turn = 1;
 	
 	private List<Player> playerList = new ArrayList<>();
@@ -62,7 +66,7 @@ public class Menu {
 					System.out.print("Escolha qual jogador é você ?(PLAYER_ONE, PLAYER_TWO ou PLAYER_THREE)");
 					String player = sc.next();
 					playerList.add(new Player(name, secondName, nickName, CurrentPlayer.valueOf(player)));
-					currentPlayer = CurrentPlayer.valueOf(player);
+					currentPlayer = CurrentPlayer.PLAYER_ONE;
 					
 					}
 				
@@ -71,8 +75,13 @@ public class Menu {
 						getCurrentPlayer();
 						System.out.println(currentPlayer);
 						System.out.println(perguntas);
-						int answer = sc.nextInt();
-						nextTurn();
+						int kick = sc.nextInt();
+						if (number == 3) {
+							nextTurnOne();
+						}
+						if (number == 2) {
+							nextTurnTwo();
+						}
 						
 					}
 					
@@ -103,7 +112,7 @@ public class Menu {
 		return currentPlayer;
 	}
 
-	private void nextTurn() {
+	private void nextTurnOne() {
 		turn++;
 		if(currentPlayer == CurrentPlayer.PLAYER_ONE) {
 			currentPlayer = CurrentPlayer.PLAYER_TWO;
@@ -114,6 +123,11 @@ public class Menu {
 		else {
 			currentPlayer = CurrentPlayer.PLAYER_ONE;
 		}
+		
+	}
+	private void nextTurnTwo() {
+		turn++;
+		currentPlayer = (currentPlayer == CurrentPlayer.PLAYER_ONE)? CurrentPlayer.PLAYER_TWO:CurrentPlayer.PLAYER_ONE;
 		
 	}
 	
@@ -133,7 +147,7 @@ public class Menu {
 			+"(3) cd /etc/samba\n"
 			+"(4) cd /etc/smb";
 	private String pergunta3 = "Como criar usuario no samba?(DICA:adcionar no linux, criar senha no samba, permitir usuario no smb.conf)\n"
-			+"(1) users = <nome>, useradd <nome>, smbpasswd -a <nome>\n"
+			+"(1) valid users = <nome>, useradd <nome>, smbpasswd -a <nome> <nome>\n"
 			+"(2) users = <nome>, groupadd <nome>, gpasswd <nome>\n"
 			+"(3) useradd = <nome>, groupadd <nome>, smbpasswd -a <nome>\n"
 			+"(4) users = @<nome>, groupadd <nome>, gpasswd <nome>";
@@ -145,13 +159,13 @@ public class Menu {
 	private String pergunta5 = "Qual a finalidade de escrever WRITEABLE = YES no smb.confe chmod a+w *.txt?\n"
 			+"(1) Dar permissão de leitura \n"
 			+"(2) Dar permissão de execução\n"
-			+"(3) Dar permissão de tudo\n"
+			+"(3) Dar permissão de tudo\n"                             
 			+"(4) Dar permissão de escrita";
-	private String pergunta6 = "Qual o comando para adcionar um usuario ao grupo do samba?\n"
-			+"(1) usearadd <nome>"
-			+"(2) gpasswd <nome>\n"
-			+"(3) groupadd <nome>\n"
-			+"(4) smbpasswd";
+	private String pergunta6 = "Qual o comando para adcionar um usuario a um grupo no samba?\n"
+			+ "(1) smbgroup <nomede usuario>\n"
+			+ "(2) useradd <nome de usuario>\n"
+			+ "(3) groupadd <nome de usuario>\n"
+			+ "(4) useradd <nome do usuario> <nome do grupo>";
 	private String pergunta7 = "Como acessar o compartilhamento do samba no Windows ?\n"
 			+"(1) Windows + r, \\IP(IP da maquina virtual) \n"
 			+"(2) cmd \\IP\n"
