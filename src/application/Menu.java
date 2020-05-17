@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import entities.Instrucao;
 import entities.Player;
+import entities.Ranking;
+import entities.ScoreRanking;
 import entities.Enum.CurrentPlayer;
 
 public class Menu {
@@ -14,6 +16,10 @@ public class Menu {
 	
 	int[] rightAnswer = new int[] {4,3,1,1,4,4,1,2,1};
 	int[] answer = new int[rightAnswer.length];
+	int amount = 0;
+	int sum = 0;
+	ScoreRanking scoreRanking = new ScoreRanking();
+	
 	
 	
 	private int turn = 1;
@@ -25,6 +31,7 @@ public class Menu {
 	private List<String>lista =  new ArrayList<>();
 	
 	public void menu() {
+		
 		
 		lista.add(pergunta1);
 		lista.add(pergunta2);
@@ -70,11 +77,11 @@ public class Menu {
 					
 					}
 				
-					for (String perguntas : lista) {
+					for (int i =0; i < lista.size();i++) {
 						Menu.clearScreen();
 						getCurrentPlayer();
 						System.out.println(currentPlayer);
-						System.out.println(perguntas);
+						System.out.println(lista.get(i));
 						int kick = sc.nextInt();
 						if (number == 3) {
 							nextTurnOne();
@@ -82,6 +89,7 @@ public class Menu {
 						if (number == 2) {
 							nextTurnTwo();
 						}
+						answer [i] = kick;
 						
 					}
 					

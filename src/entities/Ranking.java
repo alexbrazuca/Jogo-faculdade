@@ -2,23 +2,48 @@ package entities;
 
 import entities.Enum.CurrentPlayer;
 
-public class Ranking extends Player{
-
-	private ScoreRanking scoreRanking;
+public class Ranking  {
 	
-	public Ranking(String name, String secondName, String apelido, CurrentPlayer currentPlayer, ScoreRanking scoreRanking) {
-		super(name, secondName, apelido, currentPlayer);
-		this.scoreRanking = scoreRanking;
+	private Player player;
+	private int amount;
+	
+	public Ranking(Player player, int amount) {
+		this.player = player;
+		this.amount = amount;
+		
+	}
+	
+	
+	
+
+	public int getAmount() {
+		return amount;
 	}
 
-	public ScoreRanking getScoreRanking() {
-		return scoreRanking;
+
+
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
-	private String toString(String name, ScoreRanking scoreRanking) {
+
+
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	private String toString(String name, CurrentPlayer currentPlayer, ScoreRanking scoreRanking) {
 		return "Nome: " 
-				+ getName()
-				+ "\nScore: "
-				+ getScoreRanking();
+				+ getPlayer().getName()
+				+ "\n"
+				+"Jogador: "
+				+ getPlayer().getCurrentPlayer()
+				+ "\n"
+				+ "Score: "
+				+ getAmount();
 	}
+
+	
 }

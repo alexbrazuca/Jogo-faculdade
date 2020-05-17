@@ -6,5 +6,5 @@ public class ScoreRanking implements Score {
 	public int score(int amount) {
 		return amount += amount;
 	}
-
+	
 }

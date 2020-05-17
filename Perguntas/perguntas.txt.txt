@@ -1,0 +1,62 @@
+		PERGUNTA1
+Qual o comando para instalar o samba no sistema Linux Debian?
+(1) apt samba
+(2) apt-get install smb
+(3) apt install smb
+(4) apt-get install samba;
+
+		PERGUNTA2
+Qual o caminho para acessar a pasta em que esta localizado o arquivo de configuração do samba?
+(1) cd /home/smb.conf
+(2) cd /home/sambA
+(3) cd /etc/samba
+(4) cd /etc/smb;
+
+		PERGUNTA3
+Como criar usuario no samba?(DICA:adcionar no linux, criar senha no samba, permitir usuario no smb.conf)
+(1) valid users = <nome>, useradd <nome>, smbpasswd -a <nome> <nome>
+(2) users = <nome>, groupadd <nome>, gpasswd <nome>
+(3) useradd = <nome>, groupadd <nome>, smbpasswd -a <nome>
+(4) users = @<nome>, groupadd <nome>, gpasswd <nome
+
+		PERGUNTA4
+Qual o comando para saber se o usuario foi adcionado no Samba?
+(1) pdbedit -L
+(2) cat /etc/passwd
+(3) cat /etc/group
+(4) less /etc/passwd
+
+		PERGUNTA5
+Qual a finalidade de escrever WRITEABLE = YES no smb.confe chmod a+w *.txt?\n"
+(1) Dar permissão de leitura 
+(2) Dar permissão de execução
+(3) Dar permissão de tudo                             
+(4) Dar permissão de escrita
+
+		PERGUNTA6
+Qual o comando para adcionar um usuario a um grupo no samba?
+(1) smbgroup <nomede usuario>
+(2) useradd <nome de usuario>
+(3) groupadd <nome de usuario>
+(4) useradd <nome do usuario> <nome do grupo>
+
+		PERGUNTA7
+Como acessar o compartilhamento do samba no Windows ?
+(1) Windows + r, \\IP(IP da maquina virtual)
+(2) cmd \\IP\n"
+(3) Abrir navegador e digitar \\IP\n"
+(4) apt-get install samba"
+
+		PERGUNTA8
+Qual o comando para saber se o samba esta ativo?
+(1) systemctl start nmbd
+(2) systemctl status smbd
+(3) ufw status samba
+(4) ufw start smbd
+
+		PERGUNTA9
+Qual o comando para reiniciar o samba?
+(1) systemctl restart smbd
+(2) service start nmbd
+(3) service start smbd
+(4) systemctl revive smbd
