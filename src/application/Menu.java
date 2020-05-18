@@ -7,6 +7,7 @@ import java.util.Scanner;
 import entities.Instrucao;
 import entities.Player;
 import entities.Ranking;
+import entities.Score;
 import entities.ScoreRanking;
 import entities.Enum.CurrentPlayer;
 
@@ -20,9 +21,11 @@ public class Menu {
 	int sum = 0;
 	ScoreRanking scoreRanking = new ScoreRanking();
 	
-	
+	String input;
 	
 	private int turn = 1;
+	
+	private List<Ranking> ranking = new ArrayList<>();
 	
 	private List<Player> playerList = new ArrayList<>();
 	
@@ -42,6 +45,8 @@ public class Menu {
 		lista.add(pergunta7);
 		lista.add(pergunta8);
 		lista.add(pergunta9);
+		
+		
 		
 		System.out.println("---------------------------MENU---------------------------");
 		
@@ -70,26 +75,49 @@ public class Menu {
 					String secondName = sc.next();
 					System.out.print("Apelido: ");
 					String nickName = sc.next();
-					System.out.print("Escolha qual jogador é você ?(PLAYER_ONE, PLAYER_TWO ou PLAYER_THREE)");
-					String player = sc.next();
-					playerList.add(new Player(name, secondName, nickName, CurrentPlayer.valueOf(player)));
+					System.out.print("Escolha qual jogador é você ?(PLAYER_ONE, PLAYER_TWO ou PLAYER_THREE):");
+					String players = sc.next();
+					Player player = new Player(name, secondName, nickName, CurrentPlayer.valueOf(players));
+					playerList.add(player);
 					currentPlayer = CurrentPlayer.PLAYER_ONE;
-					
+					ranking.add(new Ranking(player, new ScoreRanking()));
 					}
-				
+					
+					
 					for (int i =0; i < lista.size();i++) {
 						Menu.clearScreen();
 						getCurrentPlayer();
 						System.out.println(currentPlayer);
 						System.out.println(lista.get(i));
 						int kick = sc.nextInt();
+				
+						answer [i] = kick;
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_ONE) {
+							System.out.println(ranking.get(0).getPlayer().getName() +" " + ranking.get(0).score(500));
+						}
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_ONE) {
+							System.out.println(ranking.get(0).getPlayer().getName() +" " + ranking.get(0).score(0));
+						}
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_TWO) {
+							System.out.println(ranking.get(1).getPlayer().getName() +" " + ranking.get(1).score(500));
+							}
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_TWO){
+							System.out.println(ranking.get(1).getPlayer().getName() +" " + ranking.get(1).score(0));
+						}
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_THREE) {
+							System.out.println(ranking.get(2).getPlayer().getName() +" " + ranking.get(2).score(500));
+						}
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_THREE) {
+							System.out.println(ranking.get(2).getPlayer().getName() +" " + ranking.get(2).score(0));
+						}
 						if (number == 3) {
 							nextTurnOne();
 						}
 						if (number == 2) {
 							nextTurnTwo();
 						}
-						answer [i] = kick;
+					}
+					for(int i = 1; i <= number; i++) {
 						
 					}
 					
@@ -143,6 +171,7 @@ public class Menu {
 		System.out.println("\033[H\033[J");
 		System.out.flush();
 	}
+	
 	
 	private String pergunta1 = "Qual o comando para instalar o samba no sistema Linux Debian?\n"
 			+"(1) apt samba\n"
