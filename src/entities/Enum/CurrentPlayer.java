@@ -1,9 +1,9 @@
 package entities.Enum;
 
-public enum CurrentPlayer {
+public enum CurrentPlayer{
 	
-	PLAYER_ONE,
-	PLAYER_TWO,
-	PLAYER_THREE;
+	ONE,
+	TWO,
+	THREE;
 
 }

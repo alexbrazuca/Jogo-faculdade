@@ -7,7 +7,6 @@ import java.util.Scanner;
 import entities.Instrucao;
 import entities.Player;
 import entities.Ranking;
-import entities.Score;
 import entities.ScoreRanking;
 import entities.Enum.CurrentPlayer;
 
@@ -75,11 +74,11 @@ public class Menu {
 					String secondName = sc.next();
 					System.out.print("Apelido: ");
 					String nickName = sc.next();
-					System.out.print("Escolha qual jogador é você ?(PLAYER_ONE, PLAYER_TWO ou PLAYER_THREE):");
+					System.out.print("Escolha qual jogador é você ?(ONE, TWO ou THREE):");
 					String players = sc.next();
 					Player player = new Player(name, secondName, nickName, CurrentPlayer.valueOf(players));
 					playerList.add(player);
-					currentPlayer = CurrentPlayer.PLAYER_ONE;
+					currentPlayer = CurrentPlayer.ONE;
 					ranking.add(new Ranking(player, new ScoreRanking()));
 					}
 					
@@ -92,22 +91,22 @@ public class Menu {
 						int kick = sc.nextInt();
 				
 						answer [i] = kick;
-						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_ONE) {
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.ONE) {
 							System.out.println(ranking.get(0).getPlayer().getName() +" " + ranking.get(0).score(500));
 						}
-						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_ONE) {
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.ONE) {
 							System.out.println(ranking.get(0).getPlayer().getName() +" " + ranking.get(0).score(0));
 						}
-						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_TWO) {
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.TWO) {
 							System.out.println(ranking.get(1).getPlayer().getName() +" " + ranking.get(1).score(500));
 							}
-						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_TWO){
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.TWO){
 							System.out.println(ranking.get(1).getPlayer().getName() +" " + ranking.get(1).score(0));
 						}
-						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_THREE) {
+						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.THREE) {
 							System.out.println(ranking.get(2).getPlayer().getName() +" " + ranking.get(2).score(500));
 						}
-						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.PLAYER_THREE) {
+						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.THREE) {
 							System.out.println(ranking.get(2).getPlayer().getName() +" " + ranking.get(2).score(0));
 						}
 						if (number == 3) {
@@ -117,9 +116,11 @@ public class Menu {
 							nextTurnTwo();
 						}
 					}
-					for(int i = 1; i <= number; i++) {
-						
+					for(int i = 0; i < number; i++) {
+						System.out.println("Result: ");
+						System.out.print(ranking.get(i).getPlayer().getName() +" "+ranking.get(i).getSum() );
 					}
+					
 					
 				break;
 			
@@ -150,20 +151,20 @@ public class Menu {
 
 	private void nextTurnOne() {
 		turn++;
-		if(currentPlayer == CurrentPlayer.PLAYER_ONE) {
-			currentPlayer = CurrentPlayer.PLAYER_TWO;
+		if(currentPlayer == CurrentPlayer.ONE) {
+			currentPlayer = CurrentPlayer.TWO;
 		}
-		else if(currentPlayer == CurrentPlayer.PLAYER_TWO){
-			currentPlayer = CurrentPlayer.PLAYER_THREE;
+		else if(currentPlayer == CurrentPlayer.TWO){
+			currentPlayer = CurrentPlayer.THREE;
 		}
 		else {
-			currentPlayer = CurrentPlayer.PLAYER_ONE;
+			currentPlayer = CurrentPlayer.ONE;
 		}
 		
 	}
 	private void nextTurnTwo() {
 		turn++;
-		currentPlayer = (currentPlayer == CurrentPlayer.PLAYER_ONE)? CurrentPlayer.PLAYER_TWO:CurrentPlayer.PLAYER_ONE;
+		currentPlayer = (currentPlayer == CurrentPlayer.ONE)? CurrentPlayer.TWO:CurrentPlayer.ONE;
 		
 	}
 	

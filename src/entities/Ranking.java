@@ -6,7 +6,8 @@ public class Ranking extends ScoreRanking implements Score  {
 	
 	private Player player;
 	private Score score;
-
+	private ScoreRanking scoreRanking;
+	
 	public Ranking() {
 	}
 	
@@ -23,6 +24,12 @@ public class Ranking extends ScoreRanking implements Score  {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+	
+	
+
+	public ScoreRanking getScoreRanking() {
+		return scoreRanking;
+	}
 
 	private String toString(String name, CurrentPlayer currentPlayer, ScoreRanking scoreRanking) {
 
@@ -32,9 +39,17 @@ public class Ranking extends ScoreRanking implements Score  {
 				+"Jogador: "
 				+ getPlayer().getCurrentPlayer()
 				+ "\n"
-			
-				;	
+				+ "Score: "
+				+ getScoreRanking();
+				
 		}
+
+	@Override
+	public int score(int amount) {
+		return sum += amount;
+	}
+
+	
 
 	
 	
