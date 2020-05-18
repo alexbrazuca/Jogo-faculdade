@@ -116,8 +116,10 @@ public class Menu {
 							nextTurnTwo();
 						}
 					}
+					System.out.println("Result: ");
+					System.out.println();
 					for(int i = 0; i < number; i++) {
-						System.out.println("Result: ");
+						
 						System.out.print(ranking.get(i).getPlayer().getName() +" "+ranking.get(i).getSum() );
 					}
 					
