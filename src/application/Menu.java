@@ -1,5 +1,11 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,10 +20,9 @@ public class Menu {
 	
 	Scanner sc = new Scanner(System.in);
 	
+	String path;
 	int[] rightAnswer = new int[] {4,3,1,1,4,4,1,2,1};
 	int[] answer = new int[rightAnswer.length];
-	int amount = 0;
-	int sum = 0;
 	ScoreRanking scoreRanking = new ScoreRanking();
 	
 	String input;
@@ -118,11 +123,17 @@ public class Menu {
 					}
 					System.out.println("Result: ");
 					System.out.println();
-					for(int i = 0; i < number; i++) {
-						
-						System.out.print(ranking.get(i).getPlayer().getName() +" "+ranking.get(i).getSum() );
+					path = "C:\\Users\\55119\\eclipse-workspace\\Game\\perguntas\\harcode.txt";
+					try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)))) {
+						for(int i = 0; i < number; i++) {
+							bw.write(ranking.get(i).getPlayer().getName() +" "+ Integer.toString(ranking.get(i).getSum()));
+							bw.newLine();
+							
+						}
 					}
-					
+						catch(IOException e) {
+							e.printStackTrace();
+						}
 					
 				break;
 			
@@ -135,7 +146,17 @@ public class Menu {
 			
 			case 3:
 				System.out.println("Ranking ");
-				
+				path = "C:\\Users\\55119\\eclipse-workspace\\Game\\perguntas\\harcode.txt";
+				try (BufferedReader br = new BufferedReader(new FileReader(path))){
+					String line = br.readLine();
+					while(line!=null) {
+					System.out.println(line);
+					line = br.readLine();
+					}
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
 				break;
 			
 		}
