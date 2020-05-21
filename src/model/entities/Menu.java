@@ -1,4 +1,4 @@
-package application;
+package model.entities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,14 +7,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import entities.Instrucao;
-import entities.Player;
-import entities.Ranking;
-import entities.ScoreRanking;
-import entities.Enum.CurrentPlayer;
+import model.entities.Instrucao;
+import model.entities.Player;
+import model.entities.Ranking;
+import model.entities.ScoreRanking;
+import model.entities.Enum.CurrentPlayer;
+import model.exceptions.DomainException;
 
 public class Menu {
 	
@@ -52,16 +54,18 @@ public class Menu {
 		
 		
 		
-		System.out.println("---------------------------MENU---------------------------");
+		System.out.println("---------------------------MENU QUIZ---------------------------");
 		
 		System.out.println();
 		System.out.println();
 		
 		System.out.println("(1) Iniciar Jogo");
-		System.out.println("(2) Instruções");
+		System.out.println("(2) Instrucao");
 		System.out.println("(3) Ranking");
 		
+		
 		int choice = sc.nextInt();
+		
 		while(choice<1 || choice>3) {
 			choice = sc.nextInt();
 		}
@@ -70,6 +74,7 @@ public class Menu {
 				System.out.println("JOGO INICIADO");
 				
 					System.out.print("Numero de jogadores: ");
+					
 					int number = sc.nextInt();
 					for(int i = 1; i<= number ; i++) {
 					
@@ -79,8 +84,11 @@ public class Menu {
 					String secondName = sc.next();
 					System.out.print("Apelido: ");
 					String nickName = sc.next();
-					System.out.print("Escolha qual jogador é você ?(ONE, TWO ou THREE):");
+					System.out.print("Escolha qual jogador e voce ?(ONE, TWO ou THREE):");
 					String players = sc.next();
+					while(!players.equals("ONE") || !players.equals("TWO")|| !players.equals("THREE")) {
+						throw new DomainException("Comando inavalido, tente novamente.");
+					}
 					Player player = new Player(name, secondName, nickName, CurrentPlayer.valueOf(players));
 					playerList.add(player);
 					currentPlayer = CurrentPlayer.ONE;
@@ -89,11 +97,11 @@ public class Menu {
 					
 					
 					for (int i =0; i < lista.size();i++) {
-						Menu.clearScreen();
+						
 						getCurrentPlayer();
 						System.out.println(currentPlayer);
 						System.out.println(lista.get(i));
-						int kick = sc.nextInt();
+						int kick = sc.nextInt(); 
 				
 						answer [i] = kick;
 						if(answer[i] == rightAnswer[i] && currentPlayer == CurrentPlayer.ONE) {
@@ -114,6 +122,7 @@ public class Menu {
 						if(answer[i] != rightAnswer[i] && currentPlayer == CurrentPlayer.THREE) {
 							System.out.println(ranking.get(2).getPlayer().getName() +" " + ranking.get(2).score(0));
 						}
+						Menu.clearScreen();
 						if (number == 3) {
 							nextTurnOne();
 						}
@@ -122,7 +131,9 @@ public class Menu {
 						}
 					}
 					System.out.println("Result: ");
-					System.out.println();
+					for(int i=0; i<number; i++) {
+						System.out.println(ranking.get(i).getPlayer().getName() +" " + ranking.get(i).getSum());
+					}
 					path = "C:\\Users\\55119\\eclipse-workspace\\Game\\perguntas\\harcode.txt";
 					try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)))) {
 						for(int i = 0; i < number; i++) {
@@ -134,6 +145,7 @@ public class Menu {
 						catch(IOException e) {
 							e.printStackTrace();
 						}
+					
 					
 				break;
 			
@@ -158,7 +170,6 @@ public class Menu {
 					e.printStackTrace();
 				}
 				break;
-			
 		}
 		
 		

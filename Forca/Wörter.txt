@@ -1,0 +1,9 @@
+useradd_-a_nome
+pdbedit_-l
+groupadd_nome
+smbpasswd_nome
+valid_users
+path
+comment
+workgroup
+security

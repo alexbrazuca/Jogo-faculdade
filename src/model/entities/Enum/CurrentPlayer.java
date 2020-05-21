@@ -1,4 +1,4 @@
-package entities.Enum;
+package model.entities.Enum;
 
 public enum CurrentPlayer{
 	

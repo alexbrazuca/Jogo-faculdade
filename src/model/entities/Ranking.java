@@ -1,6 +1,6 @@
-package entities;
+package model.entities;
 
-import entities.Enum.CurrentPlayer;
+import model.entities.Enum.CurrentPlayer;
 
 public class Ranking extends ScoreRanking implements Score  {
 	
