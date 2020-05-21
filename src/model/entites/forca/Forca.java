@@ -74,13 +74,13 @@ public class Forca  {
 						System.out.println("Você acertou a palavra");
 						System.out.println("Parabens você ganhou " + spieler.getName());
 						System.out.println("Fim do jogo");
-						return;
+						return	;
 					}
 				}
 			}
 			if(!hit) {
 				lives--;
-				System.out.println("Você ainda tem " + lives + " vidas!");
+				System.out.println("Você tem " + lives + " vidas!");
 			}
 			if(lives == 0) {
 				System.out.println("FIM DE JOGO");
