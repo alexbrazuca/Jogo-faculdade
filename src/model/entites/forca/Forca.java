@@ -74,7 +74,7 @@ public class Forca  {
 						System.out.println("Você acertou a palavra");
 						System.out.println("Parabens você ganhou " + spieler.getName());
 						System.out.println("Fim do jogo");
-						break;
+						return;
 					}
 				}
 			}
@@ -86,7 +86,7 @@ public class Forca  {
 				System.out.println("FIM DE JOGO");
 				System.out.println("Você morreu!");
 				
-				
+				return;
 			}
 				
 			}
