@@ -7,14 +7,14 @@ import model.entities.Instrucao;
 
 public class Forca  {
 	
-	 private int vidas = 6;
-	 private String[] palavras = {"useradd", "groupadd", "valid-users", "systemctl", "writeable", "read-only"};
-	 private int letrasAcertadas = 0;
+	 private int lives = 6;
+	 private String[] word = {"useradd", "groupadd", "valid-users", "systemctl", "writeable", "read-only"};
+	 private int foundLetter = 0;
 	
 	public void forca() {
 		
 		Scanner sc =new Scanner(System.in);
-		String inputDoUsuario = "";
+		String input = "";
 	    Random random = new Random();
 		
 		System.out.println("-----------------------------------MENU FORCA---------------------------");
@@ -29,6 +29,7 @@ public class Forca  {
 		System.out.println();
 		
 		int number = sc.nextInt();
+		Forca.clearScreen();
 		
 		switch(number) {
 		case 1:	
@@ -40,48 +41,52 @@ public class Forca  {
 			String nachname  = sc.next();
 			System.out.print("Spitzname: ");
 			String spitzname  = sc.next();
-			Spieler  splieler = new Spieler(name, nachname, spitzname);
-			int indiceDaPalavra = random.nextInt(palavras.length);
-			String palavraParaAdvinhar = palavras[indiceDaPalavra];
+			Spieler  spieler = new Spieler(name, nachname, spitzname);
+			int indiceDaPalavra = random.nextInt(word.length);
+			Forca.clearScreen();
+			String guessWord = word[indiceDaPalavra];
 			
-			String [] palavraEscondida = new String[palavraParaAdvinhar.length()];
+			String [] hiddenWord = new String[guessWord.length()];
 			
-			for(int a = 0; a < palavraEscondida.length; a++) {
-				palavraEscondida[a] = "_";
+			for(int a = 0; a < hiddenWord.length; a++) {
+				hiddenWord[a] = "_";
 			}
-			while(!inputDoUsuario.equals("sair")) {
-				for (String b : palavraEscondida) {
+			while(!input.equals("sair")) {
+				for (String b : hiddenWord) {
 					System.out.print(b + " ");
 				}
 				System.out.println("");
 				System.out.println("Digite uma letra: ");
-				inputDoUsuario = sc.next();
+				input = sc.next();
 				
-				boolean acertou = false;
+				boolean hit = false;
 				
-				for (int i = 0; i < palavraParaAdvinhar.length(); i++) {
+				for (int i = 0; i < guessWord.length(); i++) {
 					
-					String caracter = Character.toString(palavraParaAdvinhar.charAt(i));
+					String caracter = Character.toString(guessWord.charAt(i));
 					
-					if(inputDoUsuario.equals(caracter)) {
-						acertou = true;
-						letrasAcertadas++;
-						palavraEscondida[i] = inputDoUsuario;
+					if(input.equals(caracter)) {
+						hit = true;
+						foundLetter++;
+						hiddenWord[i] = input;
 					
-					if(letrasAcertadas == palavraParaAdvinhar.length()) {
+					if(foundLetter == guessWord.length()) {
 						System.out.println("Você acertou a palavra");
+						System.out.println("Parabens você ganhou " + spieler.getName());
 						System.out.println("Fim do jogo");
 						break;
 					}
 				}
 			}
-			if(!acertou) {
-				vidas--;
-				System.out.println("Você ainda tem " + vidas + " vidas!");
+			if(!hit) {
+				lives--;
+				System.out.println("Você ainda tem " + lives + " vidas!");
 			}
-			if(vidas == 0) {
+			if(lives == 0) {
+				System.out.println("FIM DE JOGO");
 				System.out.println("Você morreu!");
-				break;
+				
+				
 			}
 				
 			}
@@ -98,9 +103,15 @@ public class Forca  {
 			
 			break;
 			
-		case 3:
-			System.out.println("Ranking");
+		default:
+			System.out.println("Sem jogo");
 		}
+		
+	}
+
+	public static void clearScreen() {
+		System.out.println("\033[H\033[J");
+		System.out.flush();
 	}
 
 }
