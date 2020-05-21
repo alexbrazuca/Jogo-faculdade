@@ -16,6 +16,7 @@ public class Forca  {
 		Scanner sc =new Scanner(System.in);
 		String input = "";
 	    Random random = new Random();
+	    Forca.clearScreen();
 		
 		System.out.println("-----------------------------------MENU FORCA---------------------------");
 		
