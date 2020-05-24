@@ -5,5 +5,5 @@ public enum CurrentPlayer{
 	ONE,
 	TWO,
 	THREE;
-
+	
 }

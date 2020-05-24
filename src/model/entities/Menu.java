@@ -86,7 +86,7 @@ public class Menu {
 					String nickName = sc.next();
 					System.out.print("Escolha qual jogador e voce ?(ONE, TWO ou THREE):");
 					String players = sc.next();
-					while(!players.equals("ONE") || !players.equals("TWO")|| !players.equals("THREE")) {
+					if((!players.equals("ONE")) && (!players.equals("TWO"))&& (!players.equals("THREE"))) {
 						throw new DomainException("Comando inavalido, tente novamente.");
 					}
 					Player player = new Player(name, secondName, nickName, CurrentPlayer.valueOf(players));
