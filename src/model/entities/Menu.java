@@ -27,7 +27,6 @@ public class Menu {
 	int[] answer = new int[rightAnswer.length];
 	ScoreRanking scoreRanking = new ScoreRanking();
 	
-	String input;
 	
 	private int turn = 1;
 	
@@ -158,7 +157,7 @@ public class Menu {
 			
 			case 3:
 				System.out.println("Ranking ");
-				path = "C:\\Users\\55119\\eclipse-workspace\\Game\\perguntas\\harcode.txt";
+				path = "C:\\Users\\55119\\eclipse-workspace\\Jogo-faculdade\\perguntas\\harcode.txt";
 				try (BufferedReader br = new BufferedReader(new FileReader(path))){
 					String line = br.readLine();
 					while(line!=null) {
