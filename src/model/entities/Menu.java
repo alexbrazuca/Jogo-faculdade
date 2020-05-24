@@ -133,7 +133,7 @@ public class Menu {
 					for(int i=0; i<number; i++) {
 						System.out.println(ranking.get(i).getPlayer().getName() +" " + ranking.get(i).getSum());
 					}
-					path = "C:\\Users\\55119\\eclipse-workspace\\Game\\perguntas\\harcode.txt";
+					path = "C:\\Users\\55119\\eclipse-workspace\\Jogo-faculdade\\perguntas\\harcode.txt";
 					try(BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path)))) {
 						for(int i = 0; i < number; i++) {
 							bw.write(ranking.get(i).getPlayer().getName() +" "+ Integer.toString(ranking.get(i).getSum()));
