@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -27,8 +28,10 @@ public class Menu {
 	int[] answer = new int[rightAnswer.length];
 	ScoreRanking scoreRanking = new ScoreRanking();
 	
-	
 	private int turn = 1;
+
+	
+	private List<ReadRanking> rank = new ArrayList<>();
 	
 	private List<Ranking> ranking = new ArrayList<>();
 	
@@ -159,10 +162,15 @@ public class Menu {
 				System.out.println("Ranking ");
 				path = "C:\\Users\\55119\\eclipse-workspace\\Jogo-faculdade\\perguntas\\harcode.txt";
 				try (BufferedReader br = new BufferedReader(new FileReader(path))){
-					String line = br.readLine();
-					while(line!=null) {
-					System.out.println(line);
-					line = br.readLine();
+					String playerRanking = br.readLine();
+					while(playerRanking!=null) {
+					String fields[] = playerRanking.split(" ");
+					rank.add(new ReadRanking(fields[0], Integer.parseInt(fields[1])));
+					playerRanking = br.readLine();
+					}
+					Collections.sort(rank);
+					for(ReadRanking position: rank) {
+						System.out.println(position.getName() + " " + position.getScore());
 					}
 				}
 				catch(IOException e) {

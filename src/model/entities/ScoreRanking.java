@@ -10,4 +10,8 @@ public class ScoreRanking implements Score {
 	 public int getSum() {
 		 return sum;
 	 }
+	public int compareTo(ScoreRanking scoreRanking) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
