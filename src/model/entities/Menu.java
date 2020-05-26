@@ -96,7 +96,7 @@ public class Menu {
 						
 						getCurrentPlayer();
 						System.out.println(currentPlayer);
-						System.out.println(lista.get(i));
+						System.out.println("Questao (" +(i + 1) +") "+ lista.get(i));
 						int kick = sc.nextInt(); 
 				
 						answer [i] = kick;
@@ -215,7 +215,7 @@ public class Menu {
 			+"(2) apt-get install smb\n"
 			+"(3) apt install smb\n"
 			+"(4) apt-get install samba";
-	private String pergunta2 = "Qual o caminho para acessar a pasta em que esta localizado o arquivo de configuração do samba?\n"
+	private String pergunta2 = "Qual o caminho para acessar a dirtorio em que esta localizado o arquivo de configuracao do samba?\n"
 			+"(1) cd /home/smb.conf\n"
 			+"(2) cd /home/samba\n"
 			+"(3) cd /etc/samba\n"
@@ -225,16 +225,16 @@ public class Menu {
 			+"(2) users = <nome>, groupadd <nome>, gpasswd <nome>\n"
 			+"(3) useradd = <nome>, groupadd <nome>, smbpasswd -a <nome>\n"
 			+"(4) users = @<nome>, groupadd <nome>, gpasswd <nome>";
-	private String pergunta4 = "Qual o comando para saber se o usuario foi adcionado no Samba?\n"
+	private String pergunta4 = "Qual o comando para saber se o usuario foi adicionado no Samba?\n"
 			+"(1) pdbedit -L\n"
 			+"(2) cat /etc/passwd\n"
 			+"(3) cat /etc/group\n"
 			+"(4) less /etc/passwd";
-	private String pergunta5 = "Qual a finalidade de escrever WRITEABLE = YES no smb.confe chmod a+w *.txt?\n"
-			+"(1) Dar permissão de leitura \n"
-			+"(2) Dar permissão de execução\n"
-			+"(3) Dar permissão de tudo\n"                             
-			+"(4) Dar permissão de escrita";
+	private String pergunta5 = "Qual a finalidade de escrever WRITEABLE = YES no smb.conf chmod a+w (arquivo).txt?\n"
+			+"(1) Dar permissao de leitura \n"
+			+"(2) Dar permissao de execucao\n"
+			+"(3) Dar permissao de tudo\n"                             
+			+"(4) Dar permissao de escrita";
 	private String pergunta6 = "Qual o comando para adcionar um usuario a um grupo no samba?\n"
 			+ "(1) smbgroup <nomede usuario>\n"
 			+ "(2) useradd <nome de usuario>\n"

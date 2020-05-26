@@ -5,8 +5,8 @@ public class InfoCriador {
 	private String info = "Nome: Alex Nascimento Silva\n"
 			+ "Idade: 32 anos\n"
 			+ "Email: alexbrazuca@live.com\n"
-			+ "Referêcias: Aulas Professor Leandro Palha,\n"
-			+ "Udemy Java COMPLETO 2020 Programação Orientada a Objetos +Projetos";
+			+ "Referecias: Aulas Professor Leandro Palha,\n"
+			+ "Udemy Java COMPLETO 2020 Programacao Orientada a Objetos +Projetos";
 
 	public void info() {
 		System.out.print(getInfo());
