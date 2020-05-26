@@ -8,14 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import model.entities.Instrucao;
-import model.entities.Player;
-import model.entities.Ranking;
-import model.entities.ScoreRanking;
 import model.entities.Enum.CurrentPlayer;
 import model.exceptions.DomainException;
 
@@ -30,8 +25,7 @@ public class Menu {
 	
 	private int turn = 1;
 
-	
-	private List<ReadRanking> rank = new ArrayList<>();
+	private List<Rank> rank = new ArrayList<Rank>();
 	
 	private List<Ranking> ranking = new ArrayList<>();
 	
@@ -160,18 +154,19 @@ public class Menu {
 			
 			case 3:
 				System.out.println("Ranking ");
-				path = "C:\\Users\\55119\\eclipse-workspace\\Jogo-faculdade\\perguntas\\harcode.txt";
-				try (BufferedReader br = new BufferedReader(new FileReader(path))){
-					String playerRanking = br.readLine();
-					while(playerRanking!=null) {
-					String fields[] = playerRanking.split(" ");
-					rank.add(new ReadRanking(fields[0], Integer.parseInt(fields[1])));
-					playerRanking = br.readLine();
+				String path = "C:\\Users\\55119\\eclipse-workspace\\Jogo-faculdade\\perguntas\\harcode.txt";
+				try(BufferedReader br = new BufferedReader(new FileReader(path))){
+					String playerScore = br.readLine();
+					while(playerScore != null) {
+						String fields[] = playerScore.split(" ");
+						rank.add(new Rank(fields[0], Integer.parseInt(fields[1])));
+						playerScore = br.readLine();
 					}
 					Collections.sort(rank);
-					for(ReadRanking position: rank) {
-						System.out.println(position.getName() + " " + position.getScore());
+					for(Rank results: rank) {
+						System.out.println("Nome: " + results.getName() +" " + "Score: " + results.getScore());
 					}
+					
 				}
 				catch(IOException e) {
 					e.printStackTrace();
